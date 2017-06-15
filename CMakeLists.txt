@@ -747,6 +747,7 @@ if(NOT WIN32)
 	if("$ENV{CONDA_BUILD_STATE}" STREQUAL "BUILD" OR ENABLE_CONDA)
 	set(EMAN_PROGRAMS_TO_LINK
 			e2version.py
+			e2eulerxplor.py
 		)
 
 	# Construct the symlink commands string which will be passed to execute_process()
