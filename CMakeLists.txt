@@ -745,8 +745,22 @@ ADD_SUBDIRECTORY(recipes)
 
 if(NOT WIN32)
 	if("$ENV{CONDA_BUILD_STATE}" STREQUAL "BUILD" OR ENABLE_CONDA)
+	set(EMAN_PROGRAMS_TO_LINK
+			e2version.py
+		)
+
+	# Construct the symlink commands string which will be passed to execute_process()
+	foreach(prog ${EMAN_PROGRAMS_TO_LINK})
+		string(CONCAT command_symlink "COMMAND ${CMAKE_COMMAND} -E create_symlink ${CONDA_PREFIX}/bin/${prog} ${CONDA_SP_DIR}/${prog}")
+	endforeach()
+
+	install(CODE "execute_process(
+					${command_symlink}
+				 )"
+			)
+
+	# sphire and sparx aliases
 		install(CODE "execute_process(
-						COMMAND ${CMAKE_COMMAND} -E create_symlink ${CONDA_PREFIX}/bin/e2version.py ${CONDA_SP_DIR}/e2version.py
 						COMMAND ${CMAKE_COMMAND} -E create_symlink ${CONDA_PREFIX}/bin/sxgui.py     ${CONDA_PREFIX}/bin/sphire
 						COMMAND ${CMAKE_COMMAND} -E create_symlink ${CONDA_PREFIX}/bin/sx.py        ${CONDA_PREFIX}/bin/sparx
 					 )"
