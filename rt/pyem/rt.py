@@ -38,5 +38,8 @@ import glob
 import subprocess
 import sys
 
-for name in glob.glob(os.path.join(os.path.dirname(sys.argv[0]),'test_*.py')):
-    subprocess.call([sys.executable, name])
+test_files = glob.glob(os.path.join(os.path.dirname(sys.argv[0]), 'test_*.py'))
+print test_files
+for name in test_files:
+    print [sys.executable, name]
+    subprocess.check_call([sys.executable, name])
