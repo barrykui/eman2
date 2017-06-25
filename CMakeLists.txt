@@ -956,7 +956,7 @@ FOREACH (TEST ${TESTS})
 
 	ADD_CUSTOM_COMMAND(
         OUTPUT ${TEST}.PRINT_SPACE
-        COMMAND ${CMAKE_COMMAND} ARGS -E echo ""
+        COMMAND ${CMAKE_COMMAND} ARGS -E echo "${TEST}"
 	)
 
 	#this is the trick to make the target run every time, DoUnitTest suppose is a file never been built
