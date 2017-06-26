@@ -929,10 +929,12 @@ set(test_methods
 		test_vec.py:TestVec.test_vec_funcs
 		test_vec.py:TestVec.test_vec_ops
 		)
-
-foreach(t ${test_methods})
-	add_test_wrapper(${t})
-endforeach()
+add_test(NAME rt
+		COMMAND nosetests ${EMAN_INSTALL_PREFIX}/test/rt/pyem/
+		)
+#foreach(t ${test_methods})
+#	add_test_wrapper(${t})
+#endforeach()
 # --------------------------------------------------------------------
 #set the list of unit test to run
 #
