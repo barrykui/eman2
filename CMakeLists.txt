@@ -777,6 +777,16 @@ set(test_methods
 		test_imageio.py:TestHdfIO.test_write_image
 		test_imageio.py:TestHdfIO.test_read_write_hdf
 		test_imageio.py:TestPNGIO.test_write_png
+		test_imageio.py:TestEMIO.test_emio_write
+		test_imageio.py:TestMrcIO.test_negative_image_index
+		test_imageio.py:TestMrcIO.test_overwrite
+		test_imageio.py:TestMrcIO.test_mrcio_label
+		test_imageio.py:TestMrcIO.test_read_write_mrc
+		test_imageio.py:TestImageIO.test_emdata_overwriting
+		test_imageio.py:TestImageIO.test_image_overwriting
+		test_imageio.py:TestImageIO.test_mrcio_region
+		test_imageio.py:TestImageIO.no_test_imagicio_region
+		test_imageio.py:TestImageIO.test_hdfio_region
 		)
 
 foreach(t ${test_methods})
