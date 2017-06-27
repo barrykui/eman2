@@ -784,8 +784,8 @@ set(test_methods
 		test_imageio.py:TestMrcIO.test_read_write_mrc
 		test_imageio.py:TestImageIO.test_emdata_overwriting
 		test_imageio.py:TestImageIO.test_image_overwriting
-		test_imageio.py:TestImageIO.test_mrcio_region
-		test_imageio.py:TestImageIO.no_test_imagicio_region
+#		test_imageio.py:TestImageIO.test_mrcio_region
+#		test_imageio.py:TestImageIO.no_test_imagicio_region
 		test_imageio.py:TestImageIO.test_hdfio_region
 		test_aligner.py:TestAligner.test_TranslationalAligner
 		test_aligner.py:TestAligner.test_RTF_slow_exhaustive_aligner
@@ -845,11 +845,11 @@ set(test_methods
 #		test_processor.py:TestProcessor.no_test_complex_normpixels
 		test_processor.py:TestProcessor.no_test_math_laplacian
 #		test_processor.py:TestProcessor.test_mask_contract
-		test_processor.py:TestProcessor.test_eman1_filter_median
-		test_processor.py:TestProcessor.test_math_localsigma
-		test_processor.py:TestProcessor.test_math_localmax
-		test_processor.py:TestProcessor.test_math_submax
-		test_processor.py:TestProcessor.test_mask_onlypeaks
+#		test_processor.py:TestProcessor.test_eman1_filter_median
+#		test_processor.py:TestProcessor.test_math_localsigma
+#		test_processor.py:TestProcessor.test_math_localmax
+#		test_processor.py:TestProcessor.test_math_submax
+#		test_processor.py:TestProcessor.test_mask_onlypeaks
 ##		test_processor.py:TestProcessor.no_test_eman1_filter_blockrange
 #		test_processor.py:TestProcessor.no_test_eman1_filter_blockcutoff
 #		test_processor.py:TestProcessor.no_test_math_lineargradientfix
@@ -917,8 +917,8 @@ set(test_methods
 		test_typeconverter.py:TestTypeConverter.test_map
 		test_typeconverter.py:TestTypeConverter.test_vector
 		test_typeconverter.py:TestTypeConverter.test_em2numpy
-		test_typeconverter.py:TestTypeConverter.test_numpy2em
-		test_typeconverter.py:TestTypeConverter.test_numpy2em2
+#		test_typeconverter.py:TestTypeConverter.test_numpy2em
+#		test_typeconverter.py:TestTypeConverter.test_numpy2em2
 		test_typeconverter.py:TestTypeConverter.test_em2numpy2
 		test_typeconverter.py:TestTypeConverter.test_Point_and_Size_class
 		test_typeconverter.py:TestTypeConverter.test_None_emobject
