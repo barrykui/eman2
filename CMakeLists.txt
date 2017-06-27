@@ -787,6 +787,12 @@ set(test_methods
 		test_imageio.py:TestImageIO.test_mrcio_region
 		test_imageio.py:TestImageIO.no_test_imagicio_region
 		test_imageio.py:TestImageIO.test_hdfio_region
+		test_aligner.py:TestAligner.test_TranslationalAligner
+		test_aligner.py:TestAligner.test_RTF_slow_exhaustive_aligner
+		test_aligner.py:TestAligner.test_RefineAligner
+		test_aligner.py:TestAligner.test_RotateFlipAligner
+		test_aligner.py:TestAligner.test_RotateTranslateAligner
+		test_aligner.py:TestAligner.test_RotateTranslateFlipAligner
 		)
 
 foreach(t ${test_methods})
