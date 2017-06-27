@@ -922,6 +922,12 @@ set(test_methods
 		test_typeconverter.py:TestTypeConverter.test_em2numpy2
 		test_typeconverter.py:TestTypeConverter.test_Point_and_Size_class
 		test_typeconverter.py:TestTypeConverter.test_None_emobject
+		test_vec.py:TestVec.test_as_list
+		test_vec.py:TestVec.test_cplusplus_vec_to_python_list
+		test_vec.py:TestVec.test_python_list_to_cplusplus_vec
+		test_vec.py:TestVec.test_vec_transform_op
+		test_vec.py:TestVec.test_vec_funcs
+		test_vec.py:TestVec.test_vec_ops
 		)
 
 foreach(t ${test_methods})
