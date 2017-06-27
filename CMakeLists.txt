@@ -910,6 +910,18 @@ set(test_methods
 #		test_processor.py:TestProcessor.test_basis_wavelet
 #		test_processor.py:TestProcessor.test_basis_fft
 #		test_processor.py:TestProcessor.no_test_IntegerCyclicShift2DProcessor
+		test_typeconverter.py:TestTypeConverter.test_emobject_to_py
+		test_typeconverter.py:TestTypeConverter.test_emobject
+		test_typeconverter.py:TestTypeConverter.test_Dict
+		test_typeconverter.py:TestTypeConverter.test_point_size
+		test_typeconverter.py:TestTypeConverter.test_map
+		test_typeconverter.py:TestTypeConverter.test_vector
+		test_typeconverter.py:TestTypeConverter.test_em2numpy
+		test_typeconverter.py:TestTypeConverter.test_numpy2em
+		test_typeconverter.py:TestTypeConverter.test_numpy2em2
+		test_typeconverter.py:TestTypeConverter.test_em2numpy2
+		test_typeconverter.py:TestTypeConverter.test_Point_and_Size_class
+		test_typeconverter.py:TestTypeConverter.test_None_emobject
 		)
 
 foreach(t ${test_methods})
