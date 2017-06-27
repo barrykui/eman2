@@ -891,7 +891,7 @@ set(test_methods
 		test_processor.py:TestProcessor.test_xform_centeracf
 #		test_processor.py:TestProcessor.no_test_eman1_filter_snr
 #		test_processor.py:TestProcessor.no_test_eman1_filter_byfile
-		test_processor.py:TestProcessor.est_misc_symsearch
+#		test_processor.py:TestProcessor.est_misc_symsearch
 		test_processor.py:TestProcessor.test_misc_localnorm
 #		test_processor.py:TestProcessor.test_mask_fromfile
 #		test_processor.py:TestProcessor.test_mask_fromfile_sizediff
