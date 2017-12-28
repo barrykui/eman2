@@ -5,6 +5,10 @@ pipeline {
     }
   }
   
+  triggers {
+    cron('0 3 * * *')
+  }
+  
   environment {
     SKIP_UPLOAD = '1'
   }
