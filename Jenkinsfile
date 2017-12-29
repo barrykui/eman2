@@ -77,8 +77,6 @@ pipeline {
       steps {
         echo 'Setting GitHub status...'
       }
-    }
-  }
   
   post {
     success {
@@ -91,6 +89,8 @@ pipeline {
     
     aborted {
       notifyGitHub('ERROR', 'build')
+    }
+  }
     }
   }
 }
