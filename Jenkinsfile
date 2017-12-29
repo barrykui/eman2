@@ -18,7 +18,7 @@ def getJobType() {
     return job_type
 }
 
-def notifyGitHub(status,stage) {
+def notifyGitHub(status) {
     if(status == 'PENDING') {
         message = 'Building...'
     }
@@ -31,7 +31,7 @@ def notifyGitHub(status,stage) {
     if(status == 'ERROR') {
         message = 'Build aborted!'
     }
-    step([$class: 'GitHubCommitStatusSetter', contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: "${JOB_NAME}: "+stage], statusResultSource: [$class: 'ConditionalStatusResultSource', results: [[$class: 'AnyBuildResult', message: message, state: status]]]])
+    step([$class: 'GitHubCommitStatusSetter', contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: "${JOB_NAME}"], statusResultSource: [$class: 'ConditionalStatusResultSource', results: [[$class: 'AnyBuildResult', message: message, state: status]]]])
 }
 
 pipeline {
@@ -58,7 +58,7 @@ pipeline {
       }
       
       steps {
-        notifyGitHub('PENDING', 'build')
+        notifyGitHub('PENDING')
       }
     }
     
@@ -93,15 +93,15 @@ pipeline {
       
       post {
         success {
-          notifyGitHub('SUCCESS', 'build')
+          notifyGitHub('SUCCESS')
         }
         
         failure {
-          notifyGitHub('FAILURE', 'build')
+          notifyGitHub('FAILURE')
         }
         
         aborted {
-          notifyGitHub('ERROR', 'build')
+          notifyGitHub('ERROR')
         }
       }
     }
