@@ -120,6 +120,7 @@ pipeline {
     stage('centos6') {
       when {
         expression { JOB_TYPE == "cron" }
+        expression { SLAVE_OS == "linux" }
       }
       
       steps {
@@ -130,6 +131,7 @@ pipeline {
     stage('centos7') {
       when {
         expression { JOB_TYPE == "cron" }
+        expression { SLAVE_OS == "linux" }
       }
       
       steps {
@@ -140,6 +142,7 @@ pipeline {
     stage('mac') {
       when {
         expression { JOB_TYPE == "cron" }
+        expression { SLAVE_OS == "osx" }
       }
       
       steps {
