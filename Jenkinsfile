@@ -51,6 +51,7 @@ pipeline {
   }
   
   stages {
+    // Stages triggered by GitHub pushes
     stage('pending') {
       when {
         expression { JOB_TYPE == "push" }
@@ -105,6 +106,7 @@ pipeline {
       }
     }
     
+    // Stages triggered by cron
     stage('build-scripts-checkout') {
       steps {
         sh 'cd ${HOME}/workspace/build-scripts-cron/ && git checkout jenkins && git pull --rebase'
