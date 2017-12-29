@@ -72,6 +72,12 @@ pipeline {
         }
       }
     }
+    
+    stage('notify') {
+      steps {
+        echo 'Setting GitHub status...'
+      }
+    }
   }
   
   post {
