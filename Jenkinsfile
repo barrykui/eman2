@@ -77,20 +77,20 @@ pipeline {
       steps {
         echo 'Setting GitHub status...'
       }
-  
-  post {
-    success {
-      notifyGitHub('SUCCESS', 'build')
-    }
-    
-    failure {
-      notifyGitHub('FAILURE', 'build')
-    }
-    
-    aborted {
-      notifyGitHub('ERROR', 'build')
-    }
-  }
+      
+      post {
+        success {
+          notifyGitHub('SUCCESS', 'build')
+        }
+        
+        failure {
+          notifyGitHub('FAILURE', 'build')
+        }
+        
+        aborted {
+          notifyGitHub('ERROR', 'build')
+        }
+      }
     }
   }
 }
