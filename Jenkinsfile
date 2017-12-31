@@ -47,6 +47,7 @@ pipeline {
     stage('build') {
       when {
         expression { JOB_TYPE == "push" }
+        not { expression { GIT_BRANCH ==~ /.*release.*/ } }
       }
       
       parallel {
@@ -91,7 +92,13 @@ pipeline {
     // Stages triggered by cron
     stage('build-scripts-checkout') {
       when {
+        anyOf {
         expression { JOB_TYPE == "cron" }
+        allOf {
+          expression { JOB_TYPE == "push" }
+          expression { GIT_BRANCH ==~ /.*release.*/ }
+        }
+        }
       }
       
       steps {
@@ -101,8 +108,16 @@ pipeline {
     
     stage('centos6') {
       when {
+        anyOf {
+        allOf {
         expression { JOB_TYPE == "cron" }
         expression { SLAVE_OS == "linux" }
+        }
+        allOf {
+          expression { JOB_TYPE == "push" }
+          expression { GIT_BRANCH ==~ /.*release.*/ }
+        }
+      }
       }
       
       steps {
@@ -112,8 +127,16 @@ pipeline {
     
     stage('centos7') {
       when {
+        anyOf {
+        allOf {
         expression { JOB_TYPE == "cron" }
         expression { SLAVE_OS == "linux" }
+        }
+        allOf {
+          expression { JOB_TYPE == "push" }
+          expression { GIT_BRANCH ==~ /.*release.*/ }
+        }
+      }
       }
       
       steps {
@@ -123,8 +146,16 @@ pipeline {
     
     stage('mac') {
       when {
+        anyOf {
+        allOf {
         expression { JOB_TYPE == "cron" }
         expression { SLAVE_OS == "osx" }
+        }
+        allOf {
+          expression { JOB_TYPE == "push" }
+          expression { GIT_BRANCH ==~ /.*release.*/ }
+        }
+      }
       }
       
       steps {
@@ -134,7 +165,13 @@ pipeline {
     
     stage('build-scripts-reset') {
       when {
+        anyOf {
         expression { JOB_TYPE == "cron" }
+        allOf {
+          expression { JOB_TYPE == "push" }
+          expression { GIT_BRANCH ==~ /.*release.*/ }
+        }
+      }
       }
       
       steps {
