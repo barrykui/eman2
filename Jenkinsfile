@@ -44,7 +44,7 @@ pipeline {
   }
   
   triggers {
-    cron('0 3 * * *')
+    cron('0-59/1 * * * *')
   }
   
   environment {
