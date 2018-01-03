@@ -68,7 +68,7 @@ pipeline {
       }
     }
     
-    stage('notify') {
+    stage('notify-push') {
       when {
         expression { JOB_TYPE == "push" }
       }
