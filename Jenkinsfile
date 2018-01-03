@@ -147,5 +147,17 @@ pipeline {
         sh 'cd ${HOME}/workspace/build-scripts-cron/ && git checkout master'
       }
     }
+    
+    stage('notify-cron') {
+      when {
+        expression { JOB_TYPE == "cron" }
+      }
+      
+      steps {
+        emailext(to: '$DEFAULT_RECIPIENTS',
+                 subject: '[JenkinsCI/$PROJECT_NAME/cron] Build # $BUILD_NUMBER - $BUILD_STATUS!', 
+                 body: '''${SCRIPT, template="groovy-text.template"}''')
+      }
+    }
   }
 }
