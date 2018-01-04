@@ -19,7 +19,7 @@ def notifyGitHub(status) {
 }
 
 def isRelease() {
-    return GIT_BRANCH ==~ /.*\/release.*/
+    return (GIT_BRANCH ==~ /.*\/release.*/) && (JOB_TYPE == "push")
 }
 
 def runCronJob() {
@@ -54,7 +54,7 @@ pipeline {
     
     stage('build') {
       when {
-        expression { JOB_TYPE == "push" }
+        not { expression { JOB_TYPE == "cron" } }
         not { expression { isRelease() } }
       }
       
@@ -78,10 +78,7 @@ pipeline {
       when {
         anyOf {
         expression { JOB_TYPE == "cron" }
-        allOf {
-          expression { JOB_TYPE == "push" }
           expression { isRelease() }
-        }
         }
       }
       
@@ -94,10 +91,7 @@ pipeline {
       when {
         anyOf {
         expression { JOB_TYPE == "cron" }
-        allOf {
-          expression { JOB_TYPE == "push" }
           expression { isRelease() }
-        }
         }
         expression { SLAVE_OS == "linux" }
       }
@@ -111,10 +105,7 @@ pipeline {
       when {
         anyOf {
         expression { JOB_TYPE == "cron" }
-        allOf {
-          expression { JOB_TYPE == "push" }
           expression { isRelease() }
-        }
         }
         expression { SLAVE_OS == "linux" }
       }
@@ -128,10 +119,7 @@ pipeline {
       when {
         anyOf {
         expression { JOB_TYPE == "cron" }
-        allOf {
-          expression { JOB_TYPE == "push" }
           expression { isRelease() }
-        }
         }
         expression { SLAVE_OS == "mac" }
       }
@@ -145,10 +133,7 @@ pipeline {
       when {
         anyOf {
         expression { JOB_TYPE == "cron" }
-        allOf {
-          expression { JOB_TYPE == "push" }
           expression { isRelease() }
-        }
         }
       }
       
