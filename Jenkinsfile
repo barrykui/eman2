@@ -68,36 +68,6 @@ pipeline {
       }
     }
     
-    stage('notify-push') {
-      when {
-        expression { JOB_TYPE == "push" }
-      }
-      
-      steps {
-        echo 'Setting GitHub status...'
-      }
-      
-      post {
-        success {
-          notifyGitHub('SUCCESS')
-        }
-        
-        failure {
-          notifyGitHub('FAILURE')
-        }
-        
-        aborted {
-          notifyGitHub('ERROR')
-        }
-        
-        always {
-          emailext(recipientProviders: [[$class: 'DevelopersRecipientProvider']],  
-                  subject: '[JenkinsCI/$PROJECT_NAME] Build # $BUILD_NUMBER - $BUILD_STATUS!', 
-                  body: '''${SCRIPT, template="groovy-text.template"}''')
-        }
-      }
-    }
-    
     // Stages triggered by cron
     stage('build-scripts-checkout') {
       when {
@@ -149,6 +119,36 @@ pipeline {
       
       steps {
         sh 'cd ${HOME}/workspace/build-scripts-cron/ && git checkout master'
+      }
+    }
+    
+    stage('notify-push') {
+      when {
+        expression { JOB_TYPE == "push" }
+      }
+      
+      steps {
+        echo 'Setting GitHub status...'
+      }
+      
+      post {
+        success {
+          notifyGitHub('SUCCESS')
+        }
+        
+        failure {
+          notifyGitHub('FAILURE')
+        }
+        
+        aborted {
+          notifyGitHub('ERROR')
+        }
+        
+        always {
+          emailext(recipientProviders: [[$class: 'DevelopersRecipientProvider']],  
+                  subject: '[JenkinsCI/$PROJECT_NAME] Build # $BUILD_NUMBER - $BUILD_STATUS!', 
+                  body: '''${SCRIPT, template="groovy-text.template"}''')
+        }
       }
     }
     
