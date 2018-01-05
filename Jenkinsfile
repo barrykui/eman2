@@ -42,6 +42,8 @@ pipeline {
     JOB_TYPE = getJobType()
     INSTALLERS_DIR = '${HOME}/workspace/${STAGE_NAME}-installers'
     DEPLOY_DEST    = 'zope@ncmi.grid.bcm.edu:/home/zope/zope-server/extdata/reposit/ncmi/software/counter_222/software_136/'
+    GIT_BRANCH_SHORT = sh(returnStdout: true, script: 'echo ${GIT_BRANCH##origin/}').trim()
+    GIT_COMMIT_SHORT = sh(returnStdout: true, script: 'echo ${GIT_COMMIT:0:7}').trim()
   }
   
   stages {
@@ -170,7 +172,7 @@ pipeline {
         
         always {
           emailext(recipientProviders: [[$class: 'DevelopersRecipientProvider']],  
-                  subject: '[JenkinsCI/$PROJECT_NAME] Build # $BUILD_NUMBER - $BUILD_STATUS!', 
+                  subject: '[JenkinsCI/$PROJECT_NAME] ' + "($GIT_BRANCH_SHORT - ${GIT_COMMIT_SHORT})" + ' #$BUILD_NUMBER - $BUILD_STATUS!', 
                   body: '''${SCRIPT, template="groovy-text.template"}''')
         }
       }
@@ -183,7 +185,7 @@ pipeline {
       
       steps {
         emailext(to: '$DEFAULT_RECIPIENTS',
-                 subject: '[JenkinsCI/$PROJECT_NAME/cron] Build # $BUILD_NUMBER - $BUILD_STATUS!', 
+                 subject: '[JenkinsCI/$PROJECT_NAME/cron] ' + "($GIT_BRANCH_SHORT - ${GIT_COMMIT_SHORT})" + ' #$BUILD_NUMBER - $BUILD_STATUS!', 
                  body: '''${SCRIPT, template="groovy-text.template"}''')
       }
     }
