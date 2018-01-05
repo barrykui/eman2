@@ -55,6 +55,7 @@ pipeline {
     stage('build') {
       when {
         expression { JOB_TYPE == "push" }
+        not { expression { isRelease() } }
       }
       
       parallel {
@@ -72,10 +73,16 @@ pipeline {
       }
     }
     
-    // Stages triggered by cron
+    // Stages triggered by cron or by a release branch
     stage('build-scripts-checkout') {
       when {
+        anyOf {
         expression { JOB_TYPE == "cron" }
+        allOf {
+          expression { JOB_TYPE == "push" }
+          expression { isRelease() }
+        }
+        }
       }
       
       steps {
@@ -85,7 +92,13 @@ pipeline {
     
     stage('centos6') {
       when {
+        anyOf {
         expression { JOB_TYPE == "cron" }
+        allOf {
+          expression { JOB_TYPE == "push" }
+          expression { isRelease() }
+        }
+        }
         expression { SLAVE_OS == "linux" }
       }
       
@@ -96,7 +109,13 @@ pipeline {
     
     stage('centos7') {
       when {
+        anyOf {
         expression { JOB_TYPE == "cron" }
+        allOf {
+          expression { JOB_TYPE == "push" }
+          expression { isRelease() }
+        }
+        }
         expression { SLAVE_OS == "linux" }
       }
       
@@ -107,7 +126,13 @@ pipeline {
     
     stage('mac') {
       when {
+        anyOf {
         expression { JOB_TYPE == "cron" }
+        allOf {
+          expression { JOB_TYPE == "push" }
+          expression { isRelease() }
+        }
+        }
         expression { SLAVE_OS == "mac" }
       }
       
@@ -118,7 +143,13 @@ pipeline {
     
     stage('build-scripts-reset') {
       when {
+        anyOf {
         expression { JOB_TYPE == "cron" }
+        allOf {
+          expression { JOB_TYPE == "push" }
+          expression { isRelease() }
+        }
+        }
       }
       
       steps {
