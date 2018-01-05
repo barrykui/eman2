@@ -24,6 +24,8 @@ def isRelease() {
 
 def runCronJob() {
     sh "bash ${HOME}/workspace/build-scripts-cron/cronjob.sh $STAGE_NAME"
+    if(isRelease())
+      sh "rsync -n -avzh --stats ${INSTALLERS_DIR}/eman2.${STAGE_NAME}.unstable.sh ${DEPLOY_DEST}"
 }
 
 pipeline {
@@ -38,6 +40,8 @@ pipeline {
   environment {
     SKIP_UPLOAD = '1'
     JOB_TYPE = getJobType()
+    INSTALLERS_DIR = '${HOME}/workspace/${STAGE_NAME}-installers'
+    DEPLOY_DEST    = 'zope@ncmi.grid.bcm.edu:/home/zope/zope-server/extdata/reposit/ncmi/software/counter_222/software_136/'
   }
   
   stages {
