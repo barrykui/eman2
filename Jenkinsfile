@@ -77,7 +77,7 @@ pipeline {
     stage('build-scripts-checkout') {
       when {
         anyOf {
-        expression { JOB_TYPE == "cron" }
+          expression { JOB_TYPE == "cron" }
           expression { isRelease() }
         }
       }
@@ -90,7 +90,7 @@ pipeline {
     stage('centos6') {
       when {
         anyOf {
-        expression { JOB_TYPE == "cron" }
+          expression { JOB_TYPE == "cron" }
           expression { isRelease() }
         }
         expression { SLAVE_OS == "linux" }
@@ -104,7 +104,7 @@ pipeline {
     stage('centos7') {
       when {
         anyOf {
-        expression { JOB_TYPE == "cron" }
+          expression { JOB_TYPE == "cron" }
           expression { isRelease() }
         }
         expression { SLAVE_OS == "linux" }
@@ -118,7 +118,7 @@ pipeline {
     stage('mac') {
       when {
         anyOf {
-        expression { JOB_TYPE == "cron" }
+          expression { JOB_TYPE == "cron" }
           expression { isRelease() }
         }
         expression { SLAVE_OS == "mac" }
@@ -132,7 +132,7 @@ pipeline {
     stage('build-scripts-reset') {
       when {
         anyOf {
-        expression { JOB_TYPE == "cron" }
+          expression { JOB_TYPE == "cron" }
           expression { isRelease() }
         }
       }
