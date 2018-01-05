@@ -51,7 +51,7 @@ def notifyGitHub(status) {
 }
 
 def runCronJob() {
-    sh "bash ${HOME}/workspace/build-scripts-cron/cronjob.sh $STAGE_NAME"
+    echo "bash ${HOME}/workspace/build-scripts-cron/cronjob.sh $STAGE_NAME"
 }
 
 pipeline {
@@ -88,13 +88,13 @@ pipeline {
       parallel {
         stage('recipe') {
           steps {
-            sh 'bash ci_support/build_recipe.sh'
+            echo 'bash ci_support/build_recipe.sh'
           }
         }
         
         stage('no_recipe') {
           steps {
-            sh 'source $(conda info --root)/bin/activate eman-env && bash ci_support/build_no_recipe.sh'
+            echo 'source $(conda info --root)/bin/activate eman-env && bash ci_support/build_no_recipe.sh'
           }
         }
       }
@@ -137,7 +137,7 @@ pipeline {
       }
       
       steps {
-        sh 'cd ${HOME}/workspace/build-scripts-cron/ && git checkout jenkins && git pull --rebase'
+        echo 'cd ${HOME}/workspace/build-scripts-cron/ && git checkout jenkins && git pull --rebase'
       }
     }
     
@@ -180,7 +180,7 @@ pipeline {
       }
       
       steps {
-        sh 'cd ${HOME}/workspace/build-scripts-cron/ && git checkout master'
+        echo 'cd ${HOME}/workspace/build-scripts-cron/ && git checkout master'
       }
     }
     
