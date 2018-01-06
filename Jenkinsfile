@@ -73,6 +73,7 @@ pipeline {
         stage('recipe') {
           steps {
             echo 'bash ci_support/build_recipe.sh'
+            sh 'exit 1'
           }
         }
         
