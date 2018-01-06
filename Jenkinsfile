@@ -20,7 +20,7 @@ def notifyGitHub(status) {
     }
 }
 
-def notifyEmail(status) {
+def notifyEmail() {
   if(JOB_TYPE == "push") {
     emailext(recipientProviders: [[$class: 'DevelopersRecipientProvider']],  
             subject: '[JenkinsCI/$PROJECT_NAME] Build # $BUILD_NUMBER - $BUILD_STATUS!', 
