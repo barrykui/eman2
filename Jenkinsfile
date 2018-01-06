@@ -137,15 +137,6 @@ pipeline {
       }
     }
     
-    stage('notify-push') {
-      when {
-        expression { JOB_TYPE == "push" }
-      }
-      
-      steps {
-        echo 'Setting GitHub status...'
-      }
-      
       post {
         success {
           notifyGitHub('SUCCESS')
@@ -163,12 +154,6 @@ pipeline {
           notifyEmail()
         }
       }
-    }
     
-    stage('notify-cron') {
-      steps {
-        notifyEmail()
-      }
-    }
   }
 }
