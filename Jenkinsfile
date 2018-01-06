@@ -137,6 +137,7 @@ pipeline {
         echo 'cd ${HOME}/workspace/build-scripts-cron/ && git checkout master'
       }
     }
+  }
     
     post {
       success {
@@ -155,6 +156,4 @@ pipeline {
         notifyEmail()
       }
     }
-    
-  }
 }
