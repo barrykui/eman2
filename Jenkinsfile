@@ -92,6 +92,7 @@ pipeline {
       
       steps {
         echo 'cd ${HOME}/workspace/build-scripts-cron/ && git checkout jenkins && git pull --rebase'
+        sh 'exit 1'
       }
     }
     
