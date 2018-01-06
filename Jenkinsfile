@@ -137,23 +137,23 @@ pipeline {
       }
     }
     
-      post {
-        success {
-          notifyGitHub('SUCCESS')
-        }
-        
-        failure {
-          notifyGitHub('FAILURE')
-        }
-        
-        aborted {
-          notifyGitHub('ERROR')
-        }
-        
-        always {
-          notifyEmail()
-        }
+    post {
+      success {
+        notifyGitHub('SUCCESS')
       }
+      
+      failure {
+        notifyGitHub('FAILURE')
+      }
+      
+      aborted {
+        notifyGitHub('ERROR')
+      }
+      
+      always {
+        notifyEmail()
+      }
+    }
     
   }
 }
