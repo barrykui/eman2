@@ -25,16 +25,15 @@ def notifyEmail(status) {
     emailext(recipientProviders: [[$class: 'DevelopersRecipientProvider']],  
             subject: '[JenkinsCI/$PROJECT_NAME] Build # $BUILD_NUMBER - $BUILD_STATUS!', 
             body: '''${SCRIPT, template="groovy-text.template"}''')
-    }
   }
   
   if(JOB_TYPE == "cron") {
     emailext(to: '$DEFAULT_RECIPIENTS',
              subject: '[JenkinsCI/$PROJECT_NAME/cron] Build # $BUILD_NUMBER - $BUILD_STATUS!', 
              body: '''${SCRIPT, template="groovy-text.template"}''')
-    }
   }
 }
+
 def runCronJob() {
     echo "bash ${HOME}/workspace/build-scripts-cron/cronjob.sh $STAGE_NAME"
 }
